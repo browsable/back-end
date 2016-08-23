@@ -36,31 +36,15 @@ for each in train_df.iterrows():
     name = re.sub(u'[^가-힣A-Za-z0-9.]+', " ", each[1]['name'])
     name = re.sub(u'(해외|[가-힣0-20]*?할인[가-힣0-20]*?)', " ", name)
     name = re.sub(u' +', " ", name)
-    name = re.sub(u' . ', " ", name)
-    name = re.sub(u' [0-99] ', "", name)
-    #print name
+    name = re.sub(u' \. ', " ", name)
+    name = re.sub(u' [0-99] ', " ", name)
     name = " ".join(list(set(x[0] for x in t.pos(name))
                 .union(x for x in nltk.word_tokenize(name))))
     names = name.split(" ")
-    name = list(set(x for x in names))
-    for word in name:
-        if len(word)>3:
-            name +=list(set(x[0]+x[1] for x in nltk.bigrams(word)))
-    name = " ".join(name)
-    final = ""
-    for str in name.split(" "):
-        if len(str)==1:
-            final+="";
-        else :
-            final += str+" "
-    name += " ".join(x for x in set(final.split(" ")))
-    name = re.sub(u' +', " ", name)
-    name = re.sub(u' . |[0-9]*?\.|\.[0-9]*?', " ", name)
-    name = re.sub(u' [0-99] ', "", name)
-    names = name.split(" ")
     name = " ".join(list(set(x for x in names)))
     name = re.sub(u' +', " ", name)
-    name = re.sub(u' . ', " ", name)
+    name = re.sub(u' \. ', " ", name)
+    name = re.sub(u'[0-99] ', " ", name)
     print name
     cate = ";".join([each[1]['cate1'], each[1]['cate2'], each[1]['cate3']])
     d_list.append(name)

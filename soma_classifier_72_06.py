@@ -34,7 +34,7 @@ cate_list = []
 for each in train_df.iterrows():
 
     name = re.sub(u'[^가-힣A-Za-z0-9.]+', " ", each[1]['name'])
-    name = re.sub(u'(해외|[가-힣0-20]*?할인[가-힣0-20]*?|원)', " ", name)
+    name = re.sub(u'(해외|[가-힣0-20]*?할인[가-힣0-20]*?)', " ", name)
     name = re.sub(u' +', " ", name)
     name = re.sub(u' \. ', " ", name)
     name = re.sub(u' [0-99] ', " ", name)
