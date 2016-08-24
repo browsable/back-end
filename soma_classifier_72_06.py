@@ -3,31 +3,17 @@
 import pandas as pd
 from konlpy.tag import Twitter
 from sklearn.feature_extraction.text import CountVectorizer
-from bs4 import BeautifulSoup
 from sklearn.svm import LinearSVC
-from sklearn.grid_search import GridSearchCV
-import numpy as np
 from sklearn.externals import joblib
 import re
 import time
-import requests
-import simplejson
-import json
-from pprint import pprint
-from nltk.util import ngrams
 import nltk
-from functools import reduce
-from konlpy.tag import Kkma
-from nltk import collocations
-import random
 from selenium import webdriver
-import sys
 
 train_df = pd.read_pickle("soma_goods_train.df")
 train_df.shape
 train_df
 
-k = Kkma()
 t=Twitter()
 vectorizer = CountVectorizer()
 
@@ -56,7 +42,7 @@ def searchfile(filePath):
 
 
 for each in train_df.iterrows():
-    time.sleep(2)
+    time.sleep(3)
     # 트위터와 nltk를 혼합하여 형태소 추출
     name = re.sub(u'[^가-힣A-Za-z0-9.]+', " ", each[1]['name'])
     name = re.sub(u'(해외|[가-힣0-20]*?할인[가-힣0-20]*?)', " ", name)
