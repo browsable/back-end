@@ -8,6 +8,7 @@ import nltk
 from urllib import quote_plus as q, unquote_plus as unq, urlencode
 from urllib2 import build_opener, urlopen, HTTPCookieProcessor
 from cookielib import CookieJar
+import BeautifulSoup
 import re
 t = Twitter()
 _CONDITION = Condition()
@@ -85,14 +86,16 @@ def get_referer():
 @route('/classify')
 def classify():
     print "classify called"
-    img = request.GET.get('img', '')
-    # 이미지 사용하지 못함..
-    #     html = search_image(img)
-    #     soup = BeautifulSoup.BeautifulSoup(html)
-    #     cateFromImg = soup.findAll('a', attrs={'class':'_gUb'})
-    #     print cateFromImg
-    name = request.GET.get('name', '').decode('utf-8')
+    # 이미지
+    # img = request.GET.get('img', '')
+    # html = search_image(img)
+    # print html
+    # soup = BeautifulSoup.BeautifulSoup(html)
+    # cateFromImg = soup.findAll('h3', attrs={'class': 'r'})
+    # print cateFromImg
 
+    #상품명
+    name = request.GET.get('name', '').decode('utf-8')
     name = re.sub(u'[^가-힣A-Za-z0-9.]+', " ", name)
     name = re.sub(u'(해외|[가-힣0-20]*?할인[가-힣0-20]*?)', " ", name)
     name = re.sub(u' +', " ", name)
